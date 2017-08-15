@@ -1,0 +1,77 @@
+image: ubuntu:latest
+
+before_script:
+  - apt update
+  - apt install -y simulavr make avr-libc gdb-avr
+
+aes128-lowram:
+  only:
+    changes:
+      - code/aes128/lowram/*
+  script:
+    - |
+      cd code/aes128/lowram/
+      make stats
+
+aes128-normal:
+  only:
+    changes:
+      - code/aes128/normal/*
+  script:
+    - |
+      cd code/aes128/normal/
+      make stats
+
+groestl256-balanced:
+  only:
+    changes:
+      - code/groestl256/balanced/*
+  script:
+    - |
+      cd code/groestl256/balanced/
+      make stats
+
+groestl256-highspeed:
+  only:
+    changes:
+      - code/groestl256/highspeed/*
+  script:
+    - |
+      cd code/groestl256/highspeed/
+      make stats
+
+groestl256-lowram128:
+  only:
+    changes:
+      - code/groestl256/lowram128/*
+  script:
+    - |
+      cd code/groestl256/lowram128/
+      make stats
+
+groestl256-lowram192a:
+  only:
+    changes:
+      - code/groestl256/lowram192a/*
+  script:
+    - |
+      cd code/groestl256/lowram192a/
+      make stats
+
+groestl256-lowram192b:
+  only:
+    changes:
+      - code/groestl256/lowram192b/*
+  script:
+    - |
+      cd code/groestl256/lowram192b/
+      make stats
+
+groestl256-lowram256:
+  only:
+    changes:
+      - code/groestl256/lowram256/*
+  script:
+    - |
+      cd code/groestl256/lowram256/
+      make stats
