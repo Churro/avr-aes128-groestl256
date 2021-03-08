@@ -1,0 +1,164 @@
+name: Simulate, trace, analyze all implementations
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  aes128-lowram:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/aes128/lowram/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.job }}
+          path: |
+            code/aes128/lowram/${{ github.job }}-stats.txt
+
+  aes128-normal:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/aes128/normal/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: aes128-normal
+          path: |
+            code/aes128/normal/${{ github.job }}-stats.txt
+
+  groestl256-balanced:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/groestl256/balanced/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: groestl256-balanced
+          path: |
+            code/groestl256/balanced/${{ github.job }}-stats.txt
+
+  groestl256-highspeed:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/groestl256/highspeed/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: groestl256-highspeed
+          path: |
+            code/groestl256/highspeed/${{ github.job }}-stats.txt
+
+  groestl256-lowram128:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/groestl256/lowram128/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: groestl256-lowram128
+          path: |
+            code/groestl256/lowram128/${{ github.job }}-stats.txt
+
+  groestl256-lowram192a:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/groestl256/lowram192a/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: groestl256-lowram192a
+          path: |
+            code/groestl256/lowram192a/${{ github.job }}-stats.txt
+
+  groestl256-lowram192b:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/groestl256/lowram192b/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: groestl256-lowram192b
+          path: |
+            code/groestl256/lowram192b/${{ github.job }}-stats.txt
+
+  groestl256-lowram256:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Preparation
+        uses: ./.github/workflows/composite-action
+
+      - name: make stats
+        run: |
+          cd code/groestl256/lowram256/
+          make stats > ${{ github.job }}-stats.txt
+          cat ${{ github.job }}-stats.txt
+
+      - name: Store stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: groestl256-lowram256
+          path: |
+            code/groestl256/lowram256/${{ github.job }}-stats.txt

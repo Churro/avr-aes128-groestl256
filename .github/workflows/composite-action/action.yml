@@ -1,0 +1,9 @@
+name: Preparation for all jobs
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        sudo apt update
+        sudo apt install -y simulavr make avr-libc gdb-avr
+      shell: bash
